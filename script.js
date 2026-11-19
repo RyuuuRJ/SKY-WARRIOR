@@ -40,10 +40,18 @@ let dpr = 1;
 let canvasWidth = 0;
 let canvasHeight = 0;
 
-const spriteSheet = new Image();
-spriteSheet.src = "assets/images/ChatGPT Image Nov 18, 2026, 08_12_11 PM.png";
-const fighterImage = new Image();
-fighterImage.src = "assets/images/fighter.png";
+function loadAssetImage(filename) {
+  const image = new Image();
+  image.onerror = () => {
+    image.onerror = null;
+    image.src = `assets/images/${filename}`;
+  };
+  image.src = filename;
+  return image;
+}
+
+const spriteSheet = loadAssetImage("ChatGPT Image Nov 18, 2026, 08_12_11 PM.png");
+const fighterImage = loadAssetImage("fighter.png");
 const alienImages = [
   "Alien-Scout",
   "Alien-Bomber",
@@ -54,12 +62,9 @@ const alienImages = [
   "Alien-Battlecruiser",
   "Alien-Battleship"
 ].map((name) => {
-  const image = new Image();
-  image.src = `assets/images/${name}.png`;
-  return { name, image };
+  return { name, image: loadAssetImage(`${name}.png`) };
 });
-const bossImage = new Image();
-bossImage.src = "assets/images/Alien-Mothership2.png";
+const bossImage = loadAssetImage("Alien-Mothership2.png");
 
 let audioContext = null;
 let musicTimer = null;
