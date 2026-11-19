@@ -250,7 +250,7 @@ function spawnBoss() {
     w: Math.min(220, canvasWidth * .48),
     h: 150,
     hp: bossMaxHp,
-    maxhp: bossMaxHp,
+    maxHp: bossMaxHp,
     age: 0,
     shotTimer: 1.2,
     entered: false,
