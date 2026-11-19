@@ -244,13 +244,13 @@ function spawnBoss() {
   state.phase = 4;
   state.transition = false;
   enemies = [];
-  state.boss = {
+    const isMobile = window.matchMedia("(pointer: coarse)").matches || window.innerWidth <= 600;   const bossMaxHp = isMobile ? 350 : 700;   state.boss = {
     x: canvasWidth / 2,
     y: -130,
     w: Math.min(220, canvasWidth * .48),
     h: 150,
-    hp: 700,
-    maxHp: 700,
+    hp: bossMaxHp,
+    maxhp: bossMaxHp,
     age: 0,
     shotTimer: 1.2,
     entered: false,
